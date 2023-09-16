@@ -5,12 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -45,6 +48,7 @@ class MainActivity : ComponentActivity() {
 fun LemonApp() {
     var currentStep by remember { mutableStateOf(1) }
     var squeezeCount by remember { mutableStateOf(0) }
+
 
     Surface(
         modifier = Modifier
@@ -115,6 +119,7 @@ fun LemonTextAndImage(
 ) {
     Box(
         modifier = modifier
+
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -123,17 +128,22 @@ fun LemonTextAndImage(
         ) {
             Button(
                 onClick = onImageClick,
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer),
+                modifier = Modifier
+                    .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
+
             ) {
                 Image(
                     painter = painterResource(drawableResourceId),
                     contentDescription = stringResource(contentDescriptionResourceId),
+                    modifier = Modifier.padding(26.dp)
                 )
             }
             Spacer(modifier = Modifier.height(64.dp))
             Text(
                 text = stringResource(textLabelResourceId),
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                fontSize = 20.sp
             )
             Spacer(modifier = Modifier.height(86.dp))
             Text(text = stringResource(R.string.my_name), fontSize = 24.sp)
